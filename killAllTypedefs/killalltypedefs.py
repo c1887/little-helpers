@@ -15,6 +15,12 @@ with fileinput.input(inplace=True) as f:
             print(line, end='')
             continue
 
+        # TODO: Work-around for multi-line typedefs
+        # for now, we're ignoring those
+        if (line.strip()[-1] != ";"):
+            print(line, end='')
+            continue
+
         if (line.split()[0] == 'typedef'):
             # save intendation
             leading = line[:-len(line.lstrip())-1]
